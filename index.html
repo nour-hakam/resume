@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nour Hakam — Resume</title>
+  <meta name="description" content="Resume of Nour Hakam — Web/Mobile/Database Developer" />
+  <style>
+    /* ============== THEME VARIABLES ============== */
+    :root{
+      --bg: #ffffff;
+      --card: #ffffff;
+      --text: #0b1220;
+      --muted: #5b6475;
+      --line: #e9ecf3;
+      --accent: #4f46e5;      /* Indigo */
+      --accent-2: #22c55e;    /* Green (subtle highlights) */
+      --shadow: 0 6px 24px rgba(20,31,58,.06);
+      --radius: 14px;
+      --chip: #f3f5fb;
+      --chip-text: #1f2937;
+      --link: var(--accent);
+      --maxw: 940px;
+    }
+
+    /* Dark mode (toggled by checkbox) */
+    #theme-toggle:checked ~ .page{
+      --bg: #0b1220;
+      --card: #121a2b;
+      --text: #f3f6ff;
+      --muted: #b5c0d6;
+      --line: #23304b;
+      --chip: #17223a;
+      --chip-text: #dce5ff;
+      --shadow: 0 8px 30px rgba(0,0,0,.35);
+      --link: #93b4ff;
+    }
+
+    /* Respect system preference if user doesn’t toggle */
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg: #0b1220;
+        --card: #121a2b;
+        --text: #f3f6ff;
+        --muted: #b5c0d6;
+        --line: #23304b;
+        --chip: #17223a;
+        --chip-text: #dce5ff;
+        --shadow: 0 8px 30px rgba(0,0,0,.35);
+        --link: #93b4ff;
+      }
+      #theme-toggle:checked ~ .page{
+        /* Toggle flips back to light if the user prefers dark */
+        --bg: #ffffff;
+        --card: #ffffff;
+        --text: #0b1220;
+        --muted: #5b6475;
+        --line: #e9ecf3;
+        --chip: #f3f5fb;
+        --chip-text: #1f2937;
+        --shadow: 0 6px 24px rgba(20,31,58,.06);
+        --link: var(--accent);
+      }
+    }
+
+    /* ============== BASE ============== */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font: 14.5px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background: radial-gradient(1200px 600px at 10% -20%, rgba(79,70,229,.08), transparent 50%),
+                  radial-gradient(800px 400px at 110% 10%, rgba(34,197,94,.08), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+    }
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .page{
+      max-width: var(--maxw);
+      margin: 48px auto 72px;
+      padding: 0 20px;
+    }
+
+    /* ============== HEADER ============== */
+    header{
+      background: linear-gradient(90deg, rgba(79,70,229,.10), rgba(34,197,94,.10));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 28px clamp(20px,4vw,36px);
+    }
+    .top{
+      display:flex; gap:20px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    }
+    .name{
+      font-size: clamp(24px,3.2vw,32px);
+      font-weight: 800;
+      letter-spacing:.2px;
+    }
+    .role{
+      color: var(--muted);
+      font-weight:600;
+      margin-top: 4px;
+    }
+    .tools{
+      display:flex; gap:10px; align-items:center;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      background: var(--chip); color: var(--chip-text);
+      border:1px solid var(--line);
+      padding:8px 12px; border-radius: 999px; font-weight:600;
+      white-space:nowrap;
+    }
+    .links{
+      display:flex; flex-wrap:wrap; gap:8px; margin-top:16px
+    }
+    .links a{
+      padding:8px 12px; border-radius:10px;
+      background: var(--card);
+      border:1px solid var(--line);
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    .links svg{width:16px;height:16px;flex:0 0 16px}
+
+    .toggle{
+      margin-left: 6px;
+      cursor: pointer;
+      user-select:none;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:8px 12px;
+      background: var(--card);
+      display:inline-flex; align-items:center; gap:8px;
+    }
+
+    /* ============== LAYOUT ============== */
+    main{margin-top:20px; display:grid; gap:20px}
+    .grid-2{display:grid; grid-template-columns:1fr; gap:16px}
+    @media (min-width: 860px){
+      .grid-2{grid-template-columns: 1fr 1fr}
+    }
+
+    section{
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px clamp(18px,2.2vw,26px);
+    }
+    h2{
+      margin:0 0 12px; font-size: 16px; letter-spacing:.3px;
+      text-transform: uppercase; color:var(--muted)
+    }
+    .summary p{margin:0}
+
+    /* ============== SKILLS ============== */
+    .chips{display:flex; flex-wrap:wrap; gap:8px}
+    .chip{
+      background: var(--chip); color: var(--chip-text);
+      border:1px solid var(--line);
+      padding:6px 10px; border-radius:10px; font-weight:600
+    }
+    .skill-group{margin-bottom:8px}
+    .skill-title{font-weight:700;margin-bottom:6px}
+
+    /* ============== PROJECTS ============== */
+    .project{
+      border:1px solid var(--line); border-radius:12px; padding:16px; background:linear-gradient(180deg, rgba(79,70,229,.05), transparent 35%)
+    }
+    .project h3{margin:0 0 6px; font-size:15.5px}
+    .meta{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px}
+    .meta .tag{font-size:12px; padding:4px 8px; border-radius:999px; background:var(--chip); border:1px solid var(--line)}
+    .project ul{margin: 8px 0 0 18px}
+    .project ul li{margin-bottom:6px}
+
+    /* ============== EXPERIENCE ============== */
+    .exp-item{display:grid; grid-template-columns: 1fr; gap:6px; padding:12px; border:1px solid var(--line); border-radius:12px}
+    .exp-top{display:flex; flex-wrap:wrap; gap:10px; align-items:baseline; justify-content:space-between}
+    .exp-title{font-weight:700}
+    .exp-date{color:var(--muted)}
+    .exp-item ul{margin:8px 0 0 18px}
+    .exp-item ul li{margin-bottom:6px}
+
+    /* ============== EDUCATION ============== */
+    .ed-item{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px}
+    .ed-item .school{font-weight:700}
+    .ed-item .gpa{color:var(--muted)}
+
+    /* ============== PRINT ============== */
+    @media print{
+      body{background:#fff}
+      header, section{box-shadow:none}
+      .links a[href^="#"]{display:none} /* hide empty links when printing */
+      .toggle{display:none}
+      @page{size:A4; margin:12mm}
+    }
+  </style>
+</head>
+<body>
+  <!-- Theme toggle (pure CSS): checked = alternate theme -->
+  <input id="theme-toggle" type="checkbox" hidden>
+
+  <div class="page">
+    <header>
+      <div class="top">
+        <div>
+          <div class="name">Nour Hakam</div>
+          <div class="role">Web · Mobile · Database Developer (CS Graduate, 2025)</div>
+        </div>
+        <div class="tools">
+          <span class="pill" title="Open to any location / remote">Open to Remote</span>
+          <label class="toggle" for="theme-toggle" title="Toggle theme">🌙 / ☀️</label>
+        </div>
+      </div>
+
+      <div class="links" aria-label="Contact and links">
+        <a href="mailto:nour313hakam@gmail.com" title="Email">
+          <!-- mail icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v12H4z"/><path d="m4 6 8 7 8-7"/></svg>
+          nour313hakam@gmail.com
+        </a>
+        <a href="tel:81196907" title="Phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.15 9.81 19.86 19.86 0 0 1 .08 1.18 2 2 0 0 1 2.05-.99h3a2 2 0 0 1 2 1.72c.12.89.31 1.76.58 2.6a2 2 0 0 1-.45 2.11L6 7a16 16 0 0 0 7 7l1.56-1.18a2 2 0 0 1 2.11-.45c.84.27 1.71.46 2.6.58a2 2 0 0 1 1.72 2z"/></svg>
+          81196907
+        </a>
+        <!-- TODO: replace # with your URLs -->
+        <a href="#" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.41-1.35-1.79-1.35-1.79-1.1-.76.08-.75.08-.75 1.22.09 1.86 1.25 1.86 1.25 1.08 1.85 2.83 1.32 3.52 1.01.11-.78.42-1.32.76-1.62-2.67-.3-5.48-1.33-5.48-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.9 1.24 3.22 0 4.61-2.81 5.63-5.49 5.93.43.37.82 1.1.82 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 .5z"/></svg>
+          github.com/your-username
+        </a>
+        <a href="#" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8.98h5V24H0zM8.54 8.98H13v2.05h.06c.62-1.18 2.12-2.43 4.36-2.43 4.67 0 5.53 3.07 5.53 7.06V24h-5v-5.98c0-1.43-.03-3.27-1.99-3.27-1.99 0-2.29 1.55-2.29 3.17V24h-5z"/></svg>
+          linkedin.com/in/your-handle
+        </a>
+        <a href="https://hbdbskb.com" title="Portfolio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg>
+          hbdbskb.com (temporary)
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- SUMMARY -->
+      <section class="summary">
+        <h2>Summary</h2>
+        <p>
+          Computer Science graduate (2025) targeting <b>Mobile/Web/Database</b> roles. Strong with
+          <b>TypeScript, Python, Java, React, SQL, Firebase</b>. Quick to learn and ship—built projects across web apps,
+          computer vision utilities, and CRUD systems. Open to remote or any location.
+        </p>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="skills">
+        <h2>Skills</h2>
+        <div class="skill-group">
+          <div class="skill-title">Languages</div>
+          <div class="chips">
+            <span class="chip">TypeScript</span>
+            <span class="chip">Python</span>
+            <span class="chip">Java</span>
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-title">Frameworks/Libraries</div>
+          <div class="chips">
+            <span class="chip">React</span>
+            <!-- TODO: add more when ready (Node.js, Express, etc.) -->
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-title">Databases</div>
+          <div class="chips">
+            <span class="chip">SQL</span>
+            <span class="chip">Firebase</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-title">Other</div>
+          <div class="chips">
+            <span class="chip">REST APIs</span>
+            <span class="chip">Git/GitHub</span>
+            <span class="chip">Linux</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section>
+        <h2>Projects</h2>
+        <div class="grid-2">
+          <article class="project">
+            <h3>Bookable</h3>
+            <div class="meta">
+              <span class="tag">TypeScript</span>
+              <span class="tag">React</span>
+              <span class="tag">Firebase</span>
+            </div>
+            <ul>
+              <li>Booking web app for services (salons/clinics) with auth, calendars, and role-based access.</li>
+              <li>Real-time data using Firebase Auth + Firestore; form validation and responsive UI.</li>
+              <li><!-- TODO: add metric when ready -->Planned: email/SMS reminders and admin analytics dashboard.</li>
+            </ul>
+            <!-- TODO: add live link/repo: <a href="#">Demo</a> · <a href="#">Code</a> -->
+          </article>
+
+          <article class="project">
+            <h3>Face Attendance System</h3>
+            <div class="meta">
+              <span class="tag">Python</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">SQLite / Firebase</span>
+            </div>
+            <ul>
+              <li>Camera-based attendance using face detection/recognition; logs check-in/out with exports to CSV.</li>
+              <li>Dataset creation utility and simple GUI; target &gt;95% recognition on test set.</li>
+              <li><!-- TODO: add performance numbers -->Planned: model training docs + benchmarking report.</li>
+            </ul>
+          </article>
+
+          <article class="project">
+            <h3>Fuel Station Management</h3>
+            <div class="meta">
+              <span class="tag">Java</span>
+              <span class="tag">SQL</span>
+            </div>
+            <ul>
+              <li>Inventory, pump tracking, and daily sales reports with role-based permissions.</li>
+              <li>Normalized schema (products, shifts, transactions) and CSV import/export + backups.</li>
+              <li><!-- TODO: add metrics -->Planned: dashboards and user access audits.</li>
+            </ul>
+          </article>
+
+          <!-- Add more projects if needed -->
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section>
+        <h2>Experience</h2>
+        <div class="exp-item">
+          <div class="exp-top">
+            <div class="exp-title">IT Department Intern — Hoz Mall</div>
+            <div class="exp-date">2 months · <!-- TODO: add dates -->MM/YYYY–MM/YYYY · <!-- TODO: city -->City, Country</div>
+          </div>
+          <ul>
+            <li>Provided L1 support for PCs, printers, and POS terminals; installed and configured OS/applications.</li>
+            <li>Troubleshot network issues (Wi-Fi, cabling, IP settings) and set up peripherals.</li>
+            <li>Documented common fixes to reduce repeat tickets; escalated hardware faults to vendors.</li>
+            <li>Maintained inventory of IT assets and coordinated repairs.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section>
+        <h2>Education</h2>
+        <div class="ed-item">
+          <div class="school">Beirut Arab University (BAU) — B.Sc. Computer Science</div>
+          <div class="gpa">Graduation: 2025 · GPA: 3.00</div>
+        </div>
+        <div class="chips" style="margin-top:8px">
+          <span class="chip">Data Structures & Algorithms</span>
+          <span class="chip">Databases</span>
+          <span class="chip">Operating Systems</span>
+          <span class="chip">Computer Networks</span>
+          <span class="chip">Web Development</span>
+          <span class="chip">Software Engineering</span>
+        </div>
+      </section>
+    </main>
+
+    <footer style="margin-top:10px; color:var(--muted); text-align:center">
+      <!-- Optional: update date when you edit -->
+      Last updated: <!-- TODO: set date -->Aug 2025 • © Nour Hakam
+    </footer>
+  </div>
+</body>
+</html>
